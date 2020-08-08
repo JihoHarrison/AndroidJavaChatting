@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:textSize="30dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatFragment_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="채팅 목록 프래그먼트" />
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:scrollbarSize="5dp"
+        android:scrollbars="vertical"/>
 
 </LinearLayout>
