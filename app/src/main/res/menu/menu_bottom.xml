@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent">
+    <item android:id="@+id/tabFriend" android:title="친구"
+        android:icon="@drawable/baseline_people_black_24"/>
+
+    <item android:id="@+id/tabChat" android:title="대화"
+        android:icon="@drawable/baseline_chat_bubble_black_24"/>
+
+    <item android:id="@+id/tabPhoto" android:title="사진"
+        android:icon="@drawable/baseline_camera_alt_black_24"/>
+
+    <item android:id="@+id/tabSetting" android:title="설정"
+        android:icon="@drawable/baseline_settings_black_24"/>
+</menu>
