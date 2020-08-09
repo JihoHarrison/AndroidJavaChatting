@@ -1,9 +1,11 @@
 package com.jiho.chat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPass = (EditText) findViewById(R.id.editPass);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -42,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SignupActivity.class));
             }
         });
+
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +76,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-//    public class CustomTask extends AsyncTask<String, Void, String> {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+
+    }
+
+    //    public class CustomTask extends AsyncTask<String, Void, String> {
 //
 //        String recieveMsg, sendMsg;
 //
