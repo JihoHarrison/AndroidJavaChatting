@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -61,10 +64,11 @@ public class MessageActivity extends AppCompatActivity {
 
         send = (Button) findViewById(R.id.messageActivity_button);
 
-        send.setOnClickListener(new View.OnClickListener() {
+        send.setOnClickListener(new View.OnClickListener() { // 전송 버튼 클릭
             @Override
             public void onClick(View view) {
                 sendMessage(myEmail, toEmail, messageET.getText().toString());
+                messageET.setText(null);
             }
         });
     }
@@ -82,10 +86,12 @@ public class MessageActivity extends AppCompatActivity {
                 recyclerView.scrollToPosition(messageActivityAdapter.getItemCount()-1);
             }
         }, 200);
-        DBConnAsync dbConnAsync = new DBConnAsync(); // 이클립스 통해서 firebase로 전달해주는 객체
+
+        // 이클립스 통해서 firebase로 전달해주는 외부DB 객체 (firebase로 보내진 메세지는 MyFirebaseMessagingService 클래스에서 파싱처리 후 다른 사용자에게 보내지게 된다)
+        DBConnAsync dbConnAsync = new DBConnAsync();
         String result = null;
         try{
-            result = dbConnAsync.execute("send","fromemail="+myEmail+"&toemail="+toEmail+"&message"+message+"").get();
+            result = dbConnAsync.execute("send", "fromemail=" + myEmail + "&toemail=" + toEmail + "&message=" + message + "").get();
         }catch(ExecutionException e){
             e.printStackTrace();
         }catch (InterruptedException e){
@@ -105,5 +111,39 @@ public class MessageActivity extends AppCompatActivity {
         }
         cursor.close();
         sqlDB.close();
+    }
+
+    BroadcastReceiver br = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action.equals("receivedmessage")){
+                messageModels.add(new MessageModel(
+                        intent.getStringExtra("title"),
+                        intent.getStringExtra("message")
+                ));
+                messageActivityAdapter.notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() { // 스크롤 내려주는 메서드
+                    @Override
+                    public void run() {
+                        recyclerView.scrollToPosition(messageActivityAdapter.getItemCount()-1);
+                    }
+                }, 200);
+            }
+        }
+    };
+
+    @Override
+    protected void onPause() { // 브로드캐스트 리시버 해제
+        super.onPause();
+        unregisterReceiver(br);
+    }
+
+    @Override
+    protected void onResume() { // 브로드캐스트 리시버 등록
+        super.onResume();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("receivedmessage");
+        registerReceiver(br,intentFilter);
     }
 }

@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 */
 public class DBHelper extends SQLiteOpenHelper {
 
-    public DBHelper(Context context) {
+    public DBHelper(Context context) { // 앱이 실행되는 순간 생성자가 호출되며 androidDB라는 이름의 테이블(?) DB 생성
         super(context, "androidDB", null, 1);
     }
     @Override

@@ -48,7 +48,6 @@ public class FriendFragmentAdapter extends RecyclerView.Adapter<FriendFragmentAd
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override
