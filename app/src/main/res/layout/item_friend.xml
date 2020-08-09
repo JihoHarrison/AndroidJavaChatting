@@ -31,7 +31,6 @@
             android:text="이메일"
             android:textSize="18dp"/>
 
-
     </LinearLayout>
     <LinearLayout
         android:background="#000000"

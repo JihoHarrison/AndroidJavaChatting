@@ -4,6 +4,11 @@ public class UserModel { // 유저의 정보를 담기 위한 클래스
     private String userName;
     private String userEmail;
 
+    public UserModel(String userName, String userEmail) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+    }
+
     public String getUserName() {
         return userName;
     }
