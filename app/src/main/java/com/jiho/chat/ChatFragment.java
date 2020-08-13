@@ -29,10 +29,10 @@ public class ChatFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
 
         chatRoomModels = new ArrayList<>();
-        ChatRoomModel user1 = new ChatRoomModel("a");
-        chatRoomModels.add(user1);
-        ChatRoomModel user2 = new ChatRoomModel("b");
-        chatRoomModels.add(user2);
+//        ChatRoomModel user1 = new ChatRoomModel("a");
+//        chatRoomModels.add(user1);
+//        ChatRoomModel user2 = new ChatRoomModel("b");
+//        chatRoomModels.add(user2);
 
 
         chatFragmentAdapter = new ChatFragmentAdapter(chatRoomModels);

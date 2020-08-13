@@ -16,7 +16,7 @@ public class DBConnAsync extends AsyncTask<String, Void, String> { // DB 연결 
     @Override
     protected String doInBackground(String... strings) {
         try {
-            URL url = new URL("http://192.168.0.33:8888/test/" + strings[0] + ".jsp");
+            URL url = new URL("http://192.168.35.169:8888/test/" + strings[0] + ".jsp");
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestMethod("POST");

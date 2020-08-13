@@ -63,6 +63,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 sendIntent.putExtra("title", title);
                 sendIntent.putExtra("message", message);
                 sendBroadcast(sendIntent); // Broadcast 신호를 이용
+
             }else{
                 sendNotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
             }
