@@ -1,9 +1,14 @@
 package com.jiho.chat;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +38,23 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+//        int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
+//                Manifest.permission.INTERNET);
+//        if(permissionCheck != PackageManager.PERMISSION_GRANTED) {
+//            AlertDialog.Builder dialog =
+//                    new AlertDialog.Builder(getApplicationContext());
+//            dialog.setTitle("권한 요청")
+//                    .setMessage("권한이 필요합니다 계속하시겠습니까?")
+//                    .setPositiveButton("네",
+//                            new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//                                    requestPermissions(new String[]{Manifest.permission.INTERNET},
+//                                            1000);
+//                                }
+//                            }).create().show();
+//            /*------------------------------------------------------------------------------------------------------------------------*/
+//        }
 
         editEmail = (EditText) findViewById(R.id.editEmail);
         editPass = (EditText) findViewById(R.id.editPass);
@@ -46,8 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SignupActivity.class));
             }
         });
-
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,8 +98,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-
     }
 
     //    public class CustomTask extends AsyncTask<String, Void, String> {

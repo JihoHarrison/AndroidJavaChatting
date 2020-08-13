@@ -50,25 +50,7 @@ public class SignupActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(),
-                        Manifest.permission.INTERNET);
-                if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
 
-/*------------------------------------------------------------------------------------------------------------------------*/
-                }else{
-                    AlertDialog.Builder dialog =
-                            new AlertDialog.Builder(getApplicationContext());
-                    dialog.setTitle("권한 요청")
-                            .setMessage("권한이 필요합니다 계속하시겠습니까?")
-                            .setPositiveButton("네",
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            requestPermissions(new String[]{Manifest.permission.INTERNET},
-                                                    1000);
-                                        }
-                                    }).create().show();
-                }
 /*------------------------------------------------------------------------------------------------------------------------*/
                 FirebaseInstanceId.getInstance().getInstanceId()
                         .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
